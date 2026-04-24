@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DSBDA – SPPU TE Exam Guide</title>
+<style>
+  :root {
+    --bg: #0f172a; --card: #1e293b; --accent: #6366f1;
+    --accent2: #22d3ee; --text: #e2e8f0; --sub: #94a3b8;
+    --green: #4ade80; --yellow: #fbbf24; --red: #f87171;
+    --border: #334155;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', sans-serif; }
+  header { background: linear-gradient(135deg,#312e81,#1e3a5f); padding: 28px 32px; }
+  header h1 { font-size: 1.8rem; color: #fff; }
+  header p { color: #a5b4fc; margin-top: 4px; font-size: .95rem; }
+  .badge { display:inline-block; background:#4f46e5; color:#fff; font-size:.75rem;
+    padding:2px 10px; border-radius:99px; margin-left:8px; vertical-align:middle; }
+  nav { display:flex; flex-wrap:wrap; gap:8px; padding:16px 32px; background:#162032; border-bottom:1px solid var(--border); }
+  nav button { background:transparent; border:1px solid var(--border); color:var(--sub);
+    padding:6px 14px; border-radius:6px; cursor:pointer; font-size:.85rem; transition:.2s; }
+  nav button:hover, nav button.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+  main { padding:24px 32px; max-width:1100px; margin:0 auto; }
+  .topic { display:none; }
+  .topic.active { display:block; }
+  h2 { font-size:1.4rem; color:var(--accent2); margin-bottom:16px; }
+  h3 { font-size:1.05rem; color:var(--yellow); margin:18px 0 8px; }
+  h4 { font-size:.95rem; color:var(--green); margin:12px 0 6px; }
+  p, li { font-size:.92rem; line-height:1.7; color:var(--text); }
+  ul, ol { padding-left:20px; margin-bottom:10px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:18px; margin-bottom:16px; }
+  .card.highlight { border-left:4px solid var(--accent); }
+  .card.green { border-left:4px solid var(--green); }
+  .card.yellow { border-left:4px solid var(--yellow); }
+  .card.red { border-left:4px solid var(--red); }
+  code { background:#0f2744; color:#7dd3fc; padding:2px 7px; border-radius:4px; font-family:monospace; font-size:.88rem; }
+  pre { background:#0a1628; border:1px solid var(--border); border-radius:8px; padding:14px;
+    overflow-x:auto; font-family:monospace; font-size:.85rem; line-height:1.6; color:#7dd3fc; margin:10px 0; }
+  table { width:100%; border-collapse:collapse; margin:12px 0; font-size:.88rem; }
+  th { background:#1e3a5f; color:var(--accent2); padding:9px 12px; text-align:left; }
+  td { padding:8px 12px; border-top:1px solid var(--border); }
+  tr:hover td { background:#1a2a40; }
+  .tag { display:inline-block; font-size:.72rem; padding:2px 8px; border-radius:99px; margin:2px; font-weight:600; }
+  .tag.hot { background:#7f1d1d; color:#fca5a5; }
+  .tag.med { background:#1e3a1e; color:#86efac; }
+  .formula { background:#1a0f2e; border:1px solid #7c3aed; border-radius:8px; padding:12px 16px; margin:8px 0; font-family:monospace; color:#c4b5fd; }
+  .exam-tip { background:#1c1f0a; border:1px solid var(--yellow); border-radius:8px;
+    padding:12px 16px; margin:12px 0; font-size:.88rem; color:var(--yellow); }
+  .exam-tip::before { content:"📝 Exam Tip: "; font-weight:700; }
+  .two-col { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media(max-width:700px){ .two-col{grid-template-columns:1fr;} main{padding:16px;} nav{padding:10px 16px;} }
+</style>
+</head>
+<body>
+<header>
+  <h1>DSBDA – SPPU TE (2019 Pattern) <span class="badge">End Sem Guide</span></h1>
+  <p>Data Science &amp; Big Data Analytics · Frequently Asked Topics + Examples</p>
+</header>
+<nav id="nav">
+  <button class="active" onclick="show('unit1',this)">Unit 1 – Intro &amp; Stats</button>
+  <button onclick="show('unit2',this)">Unit 2 – Data Preprocessing</button>
+  <button onclick="show('unit3',this)">Unit 3 – ML Algorithms</button>
+  <button onclick="show('unit4',this)">Unit 4 – Hadoop &amp; HDFS</button>
+  <button onclick="show('unit5',this)">Unit 5 – MapReduce &amp; Hive</button>
+  <button onclick="show('unit6',this)">Unit 6 – NoSQL &amp; Spark</button>
+  <button onclick="show('pyqs',this)">🔥 PYQ Patterns</button>
+</nav>
+<main>
+
+<!-- ========== UNIT 1 ========== -->
+<div class="topic active" id="unit1">
+  <h2>Unit 1 – Introduction to Data Science &amp; Statistics</h2>
+
+  <div class="card highlight">
+    <h3>What is Data Science?</h3>
+    <p>Data Science is an interdisciplinary field that uses scientific methods, algorithms, and systems to extract knowledge and insights from structured and unstructured data.</p>
+    <h4>Data Science Life Cycle (VERY FREQUENTLY ASKED)</h4>
+    <ol>
+      <li><b>Business Understanding</b> – Define objectives</li>
+      <li><b>Data Acquisition</b> – Collect raw data</li>
+      <li><b>Data Preparation</b> – Clean &amp; preprocess</li>
+      <li><b>Exploratory Data Analysis (EDA)</b> – Understand patterns</li>
+      <li><b>Modeling</b> – Apply ML algorithms</li>
+      <li><b>Evaluation</b> – Validate model</li>
+      <li><b>Deployment</b> – Deploy to production</li>
+    </ol>
+  </div>
+
+  <div class="card green">
+    <h3>Types of Data</h3>
+    <div class="two-col">
+      <div>
+        <h4>Structured Data</h4>
+        <p>Organized in rows/columns. Stored in RDBMS.<br>Example: CSV, SQL tables</p>
+      </div>
+      <div>
+        <h4>Unstructured Data</h4>
+        <p>No predefined format.<br>Example: Images, Videos, Emails, Social media posts</p>
+      </div>
+    </div>
+    <h4>Semi-Structured Data</h4>
+    <p>Partially organized. Example: JSON, XML, HTML</p>
+  </div>
+
+  <div class="card highlight">
+    <h3>📊 Descriptive Statistics (Always in Exam)</h3>
+
+    <h4>Measures of Central Tendency</h4>
+    <div class="formula">
+      Mean (x̄) = Σx / n<br>
+      Median = Middle value when sorted<br>
+      Mode = Most frequently occurring value
+    </div>
+    <b>Example:</b> Data = [4, 7, 13, 2, 7, 9]<br>
+    <code>Mean = (4+7+13+2+7+9)/6 = 42/6 = 7</code><br>
+    <code>Sorted = [2,4,7,7,9,13] → Median = (7+7)/2 = 7</code><br>
+    <code>Mode = 7 (appears twice)</code>
+
+    <h4 style="margin-top:14px">Measures of Dispersion</h4>
+    <div class="formula">
+      Range = Max − Min<br>
+      Variance (σ²) = Σ(xᵢ − x̄)² / n<br>
+      Std Deviation (σ) = √Variance<br>
+      IQR = Q3 − Q1
+    </div>
+    <b>Example:</b> Data = [2, 4, 4, 4, 5, 5, 7, 9]
+    <pre>Mean = 5
+Variance = [(2-5)²+(4-5)²+(4-5)²+(4-5)²+(5-5)²+(5-5)²+(7-5)²+(9-5)²] / 8
+         = [9+1+1+1+0+0+4+16] / 8 = 32/8 = 4
+Std Dev  = √4 = 2</pre>
+  </div>
+
+  <div class="card yellow">
+    <h3>Correlation &amp; Covariance</h3>
+    <div class="formula">
+      Covariance(X,Y) = Σ(xᵢ−x̄)(yᵢ−ȳ) / n<br><br>
+      Pearson Correlation (r) = Cov(X,Y) / (σₓ × σᵧ)  [Range: -1 to +1]
+    </div>
+    <ul>
+      <li>r = +1 → Perfect positive correlation</li>
+      <li>r = -1 → Perfect negative correlation</li>
+      <li>r = 0 → No correlation</li>
+    </ul>
+    <div class="exam-tip">Always state the range of r and give an interpretation in answers.</div>
+  </div>
+
+  <div class="card">
+    <h3>Normal Distribution</h3>
+    <p>Bell-shaped, symmetric curve. Mean = Median = Mode.</p>
+    <ul>
+      <li>68% data lies within ±1σ</li>
+      <li>95% data lies within ±2σ</li>
+      <li>99.7% data lies within ±3σ</li>
+    </ul>
+    <div class="formula">PDF: f(x) = (1/σ√2π) × e^(-(x-μ)²/2σ²)</div>
+  </div>
+
+  <div class="card">
+    <h3>Probability Basics</h3>
+    <ul>
+      <li><b>Bayes' Theorem:</b> P(A|B) = P(B|A)·P(A) / P(B)</li>
+      <li><b>Prior probability:</b> Before observing evidence</li>
+      <li><b>Posterior probability:</b> After observing evidence</li>
+    </ul>
+    <div class="exam-tip">Naïve Bayes classification questions often appear — know how to calculate P(Yes|features).</div>
+  </div>
+</div>
+
+<!-- ========== UNIT 2 ========== -->
+<div class="topic" id="unit2">
+  <h2>Unit 2 – Data Preprocessing</h2>
+
+  <div class="card highlight">
+    <h3>Why Preprocessing? (Define in Exam)</h3>
+    <p>Real-world data is incomplete, inconsistent, and noisy. Preprocessing transforms raw data into a clean dataset suitable for analysis.</p>
+    <h4>Steps in Data Preprocessing</h4>
+    <ol>
+      <li>Data Cleaning</li>
+      <li>Data Integration</li>
+      <li>Data Transformation</li>
+      <li>Data Reduction</li>
+      <li>Data Discretization</li>
+    </ol>
+  </div>
+
+  <div class="card green">
+    <h3>1. Data Cleaning</h3>
+    <h4>Handling Missing Values</h4>
+    <ul>
+      <li><b>Ignore the tuple</b> – Remove rows with missing values</li>
+      <li><b>Manual filling</b> – Fill manually (impractical for large data)</li>
+      <li><b>Global constant</b> – Replace with "Unknown" or 0</li>
+      <li><b>Mean/Median/Mode imputation</b> – Most common method</li>
+      <li><b>Most probable value</b> – Using regression or Bayesian inference</li>
+    </ul>
+    <h4>Handling Noisy Data</h4>
+    <ul>
+      <li><b>Binning:</b> Sort data → divide into bins → smooth by bin mean/median/boundaries</li>
+      <li><b>Regression:</b> Fit data to a regression function</li>
+      <li><b>Clustering:</b> Detect and remove outliers</li>
+    </ul>
+    <div class="exam-tip">Binning example is very frequently asked. Practice equal-width &amp; equal-frequency binning!</div>
+  </div>
+
+  <div class="card yellow">
+    <h3>Binning Example (Very Important!)</h3>
+    <p>Data: <code>[4, 8, 9, 15, 21, 21, 24, 25, 26, 28, 29, 34]</code> → 3 bins</p>
+    <pre>Equal-Width Bins (Range = 34-4 = 30, Width = 10):
+Bin 1 [4-14]:   4, 8, 9
+Bin 2 [14-24]:  15, 21, 21
+Bin 3 [24-34]:  24, 25, 26, 28, 29, 34
+
+Smoothing by Bin Mean:
+Bin 1 mean = (4+8+9)/3 = 7  → [7, 7, 7]
+Bin 2 mean = (15+21+21)/3 = 19 → [19, 19, 19]
+Bin 3 mean = (24+25+26+28+29+34)/6 = 27.67 → [27.67, 27.67, 27.67, 27.67, 27.67, 27.67]
+
+Smoothing by Bin Boundaries:
+Bin 1 boundaries: 4 and 9
+  → 4→4, 8→9, 9→9
+Bin 2 boundaries: 15 and 21
+  → 15→15, 21→21, 21→21
+Bin 3 boundaries: 24 and 34
+  → 24→24, 25→24, 26→24, 28→34, 29→34, 34→34</pre>
+  </div>
+
+  <div class="card highlight">
+    <h3>2. Data Transformation</h3>
+    <h4>Normalization (Frequently Asked)</h4>
+    <div class="formula">
+      Min-Max Normalization:<br>
+      x' = (x − min) / (max − min) × (new_max − new_min) + new_min<br><br>
+      Z-score Normalization:<br>
+      x' = (x − μ) / σ
+    </div>
+    <b>Example (Min-Max to [0,1]):</b><br>
+    Data = [10, 20, 30, 40, 50]. Normalize x=20:
+    <pre>x' = (20 - 10) / (50 - 10) = 10/40 = 0.25</pre>
+    <b>Example (Z-score):</b><br>
+    μ=30, σ=10, x=50:
+    <pre>z = (50-30)/10 = 2.0</pre>
+  </div>
+
+  <div class="card">
+    <h3>3. Data Reduction</h3>
+    <ul>
+      <li><b>Dimensionality Reduction:</b> PCA – reduces number of features</li>
+      <li><b>Numerosity Reduction:</b> Regression, histograms, clustering, sampling</li>
+      <li><b>Data Compression:</b> Lossless / Lossy</li>
+    </ul>
+    <h3>4. Data Discretization</h3>
+    <p>Convert continuous attributes to discrete intervals.</p>
+    <p>Methods: Binning, Histogram analysis, Cluster analysis, Decision tree analysis</p>
+  </div>
+
+  <div class="card">
+    <h3>Outlier Detection</h3>
+    <div class="formula">
+      IQR Method:<br>
+      Q1 = 25th percentile, Q3 = 75th percentile<br>
+      IQR = Q3 − Q1<br>
+      Lower fence = Q1 − 1.5×IQR<br>
+      Upper fence = Q3 + 1.5×IQR<br>
+      Values outside fences = Outliers
+    </div>
+    <b>Example:</b> Data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 100]
+    <pre>Q1=2.75, Q3=7.25, IQR=4.5
+Lower = 2.75 - 6.75 = -4
+Upper = 7.25 + 6.75 = 14
+→ 100 is an outlier!</pre>
+  </div>
+</div>
+
+<!-- ========== UNIT 3 ========== -->
+<div class="topic" id="unit3">
+  <h2>Unit 3 – Machine Learning Algorithms</h2>
+
+  <div class="card highlight">
+    <h3>Types of Machine Learning</h3>
+    <div class="two-col">
+      <div>
+        <h4>Supervised Learning</h4>
+        <ul><li>Labeled data</li><li>Classification, Regression</li><li>Ex: Decision Tree, Naïve Bayes, Linear Regression</li></ul>
+      </div>
+      <div>
+        <h4>Unsupervised Learning</h4>
+        <ul><li>No labels</li><li>Clustering, Association</li><li>Ex: K-Means, Apriori</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card green">
+    <h3>Linear Regression (FREQUENTLY ASKED)</h3>
+    <div class="formula">
+      y = b₀ + b₁x<br><br>
+      b₁ = (n·Σxy − Σx·Σy) / (n·Σx² − (Σx)²)<br>
+      b₀ = (Σy − b₁·Σx) / n
+    </div>
+    <b>Example:</b>
+    <pre>x: 1  2  3  4  5
+y: 2  4  5  4  5
+
+n=5, Σx=15, Σy=20, Σxy=66, Σx²=55
+b₁ = (5×66 - 15×20) / (5×55 - 15²)
+   = (330 - 300) / (275 - 225)
+   = 30/50 = 0.6
+b₀ = (20 - 0.6×15)/5 = (20-9)/5 = 2.2
+
+Equation: y = 2.2 + 0.6x
+Predict for x=6: y = 2.2 + 3.6 = 5.8</pre>
+    <div class="exam-tip">Always make a table with columns x, y, xy, x² to show your work!</div>
+  </div>
+
+  <div class="card yellow">
+    <h3>Naïve Bayes Classifier (Very Frequently Asked)</h3>
+    <p>Based on Bayes' theorem. Assumes all features are independent.</p>
+    <div class="formula">P(C|X) ∝ P(C) × Π P(xᵢ|C)</div>
+    <b>Example – Play Tennis:</b>
+    <pre>Dataset: 14 days, Play=Yes:9, Play=No:5
+P(Yes)=9/14, P(No)=5/14
+
+New day: Outlook=Sunny, Temp=Cool, Humidity=High, Wind=Strong
+
+P(Yes|X) ∝ P(Yes) × P(Sunny|Yes) × P(Cool|Yes) × P(High|Yes) × P(Strong|Yes)
+         = 9/14 × 2/9 × 3/9 × 3/9 × 3/9 = 0.0053
+
+P(No|X) ∝ P(No) × P(Sunny|No) × P(Cool|No) × P(High|No) × P(Strong|No)
+        = 5/14 × 3/5 × 1/5 × 4/5 × 3/5 = 0.0206
+
+Since P(No|X) > P(Yes|X) → Prediction: NO (Don't Play)</pre>
+  </div>
+
+  <div class="card highlight">
+    <h3>Decision Tree (ID3 Algorithm)</h3>
+    <p>Selects attribute with highest <b>Information Gain</b> at each node.</p>
+    <div class="formula">
+      Entropy(S) = −Σ pᵢ log₂(pᵢ)<br>
+      Info Gain(A) = Entropy(S) − Σ (|Sᵥ|/|S|) × Entropy(Sᵥ)
+    </div>
+    <b>Example:</b>
+    <pre>Total: 14 examples, Yes=9, No=5
+Entropy(S) = -(9/14)log₂(9/14) -(5/14)log₂(5/14)
+           = -(0.643×(-0.637)) - (0.357×(-1.485))
+           = 0.410 + 0.530 = 0.940
+
+Attribute "Wind": Weak→9 (6Y,3N), Strong→5 (3Y,2N)
+E(Weak)  = -(6/9)log₂(6/9)-(3/9)log₂(3/9) = 0.918
+E(Strong)= -(3/5)log₂(3/5)-(2/5)log₂(2/5) = 0.971
+Gain(Wind) = 0.940 - (9/14×0.918 + 5/14×0.971)
+           = 0.940 - (0.590+0.347) = 0.940-0.937 = 0.003</pre>
+    <div class="exam-tip">For ID3, calculate entropy for each attribute and pick the one with max gain as root node.</div>
+  </div>
+
+  <div class="card green">
+    <h3>K-Means Clustering (FREQUENTLY ASKED)</h3>
+    <p>Unsupervised. Groups data into K clusters by minimizing intra-cluster distance.</p>
+    <h4>Steps:</h4>
+    <ol>
+      <li>Choose K centroids randomly</li>
+      <li>Assign each point to nearest centroid (using Euclidean distance)</li>
+      <li>Recalculate centroid as mean of cluster points</li>
+      <li>Repeat until centroids don't change</li>
+    </ol>
+    <div class="formula">Euclidean Distance = √[(x₂−x₁)² + (y₂−y₁)²]</div>
+    <b>Example:</b>
+    <pre>Points: A(1,1), B(2,1), C(4,3), D(5,4), K=2
+Initial Centroids: C1=(1,1), C2=(5,4)
+
+Iteration 1 – Assign:
+d(A,C1)=0,   d(A,C2)=√25=5  → Cluster1
+d(B,C1)=1,   d(B,C2)=√18=4.2 → Cluster1
+d(C,C1)=√13=3.6, d(C,C2)=√2=1.4 → Cluster2
+d(D,C1)=√25=5, d(D,C2)=0    → Cluster2
+
+New Centroids:
+C1 = ((1+2)/2, (1+1)/2) = (1.5, 1)
+C2 = ((4+5)/2, (3+4)/2) = (4.5, 3.5)
+
+Repeat until stable!</pre>
+  </div>
+
+  <div class="card">
+    <h3>Apriori Algorithm (Association Rules)</h3>
+    <div class="formula">
+      Support(A→B) = freq(A∪B) / N<br>
+      Confidence(A→B) = freq(A∪B) / freq(A)<br>
+      Lift(A→B) = Confidence(A→B) / Support(B)
+    </div>
+    <b>Example:</b>
+    <pre>5 transactions, {Bread, Butter} appears 3 times
+Bread appears 4 times
+
+Support(Bread→Butter) = 3/5 = 0.6 = 60%
+Confidence(Bread→Butter) = 3/4 = 0.75 = 75%
+
+If min_support=50%, min_confidence=60% → Rule is VALID</pre>
+  </div>
+
+  <div class="card">
+    <h3>Logistic Regression</h3>
+    <p>Used for binary classification. Outputs probability between 0 and 1.</p>
+    <div class="formula">σ(z) = 1 / (1 + e⁻ᶻ)   where z = b₀ + b₁x</div>
+    <ul>
+      <li>If P ≥ 0.5 → Class 1 (Positive)</li>
+      <li>If P &lt; 0.5 → Class 0 (Negative)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ========== UNIT 4 ========== -->
+<div class="topic" id="unit4">
+  <h2>Unit 4 – Hadoop &amp; HDFS</h2>
+
+  <div class="card highlight">
+    <h3>What is Hadoop?</h3>
+    <p>Apache Hadoop is an open-source framework for distributed storage and processing of large datasets across clusters of computers using simple programming models.</p>
+    <h4>Hadoop Ecosystem Components</h4>
+    <ul>
+      <li><b>HDFS</b> – Hadoop Distributed File System (Storage)</li>
+      <li><b>MapReduce</b> – Processing framework</li>
+      <li><b>YARN</b> – Resource management</li>
+      <li><b>Hive</b> – SQL-like queries on Hadoop</li>
+      <li><b>HBase</b> – NoSQL database on Hadoop</li>
+      <li><b>Pig</b> – Data flow scripting</li>
+      <li><b>Sqoop</b> – Import/Export between RDBMS and Hadoop</li>
+      <li><b>Flume</b> – Streaming log data ingestion</li>
+      <li><b>Spark</b> – Fast in-memory processing</li>
+      <li><b>ZooKeeper</b> – Coordination service</li>
+    </ul>
+  </div>
+
+  <div class="card green">
+    <h3>HDFS Architecture (Draw in Exam!)</h3>
+    <h4>Key Components:</h4>
+    <ul>
+      <li><b>NameNode (Master):</b> Stores metadata (file names, block locations, permissions). Single point of failure → solved by Secondary NameNode.</li>
+      <li><b>DataNode (Slave):</b> Stores actual data blocks. Sends heartbeats to NameNode every 3 seconds.</li>
+      <li><b>Secondary NameNode:</b> Periodically merges FSImage + EditLog. NOT a backup NameNode!</li>
+      <li><b>Block Size:</b> Default 128 MB (older Hadoop = 64 MB)</li>
+      <li><b>Replication Factor:</b> Default = 3</li>
+    </ul>
+    <div class="exam-tip">Draw: Client → NameNode (metadata) → Client → DataNode (data blocks). Show 3 replicas across racks.</div>
+  </div>
+
+  <div class="card yellow">
+    <h3>HDFS Read &amp; Write Operations</h3>
+    <h4>Write Operation:</h4>
+    <ol>
+      <li>Client contacts NameNode to create file</li>
+      <li>NameNode checks permissions, returns DataNode list</li>
+      <li>Client writes data to first DataNode</li>
+      <li>First DataNode replicates to second, second to third (pipeline)</li>
+      <li>Acknowledgment sent back to client</li>
+      <li>NameNode updates metadata</li>
+    </ol>
+    <h4>Read Operation:</h4>
+    <ol>
+      <li>Client contacts NameNode for block locations</li>
+      <li>NameNode returns list of DataNodes (sorted by proximity)</li>
+      <li>Client reads directly from nearest DataNode</li>
+    </ol>
+  </div>
+
+  <div class="card highlight">
+    <h3>HDFS Features</h3>
+    <ul>
+      <li><b>Fault Tolerance:</b> Data replicated 3x across different DataNodes/racks</li>
+      <li><b>Scalability:</b> Add nodes without downtime</li>
+      <li><b>High Throughput:</b> Optimized for batch processing</li>
+      <li><b>Write-Once-Read-Many:</b> Files cannot be modified once written</li>
+      <li><b>Rack Awareness:</b> Replicas placed on different racks for fault tolerance</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>YARN (Yet Another Resource Negotiator)</h3>
+    <ul>
+      <li><b>ResourceManager:</b> Global resource management (Master)</li>
+      <li><b>NodeManager:</b> Per-machine resource management</li>
+      <li><b>ApplicationMaster:</b> Per-application lifecycle management</li>
+      <li><b>Container:</b> Unit of resource allocation (CPU + Memory)</li>
+    </ul>
+    <p>YARN separates resource management from programming model (unlike Hadoop 1.x).</p>
+  </div>
+
+  <div class="card">
+    <h3>Hadoop vs Traditional RDBMS</h3>
+    <table>
+      <tr><th>Aspect</th><th>Hadoop</th><th>RDBMS</th></tr>
+      <tr><td>Data Type</td><td>Structured + Unstructured</td><td>Structured only</td></tr>
+      <tr><td>Schema</td><td>Schema on Read</td><td>Schema on Write</td></tr>
+      <tr><td>Scalability</td><td>Horizontal (add nodes)</td><td>Vertical (upgrade hardware)</td></tr>
+      <tr><td>Cost</td><td>Low (commodity hardware)</td><td>High</td></tr>
+      <tr><td>Processing</td><td>Batch</td><td>Real-time OLTP</td></tr>
+      <tr><td>Consistency</td><td>Eventual</td><td>ACID</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ========== UNIT 5 ========== -->
+<div class="topic" id="unit5">
+  <h2>Unit 5 – MapReduce &amp; Hive</h2>
+
+  <div class="card highlight">
+    <h3>MapReduce Programming Model (MOST FREQUENTLY ASKED)</h3>
+    <p>MapReduce splits a large task into two phases:</p>
+    <ul>
+      <li><b>Map Phase:</b> Input data → (Key, Value) pairs</li>
+      <li><b>Shuffle &amp; Sort:</b> Groups values by key</li>
+      <li><b>Reduce Phase:</b> Aggregates grouped values → final output</li>
+    </ul>
+    <div class="exam-tip">Always draw the MapReduce flow diagram: Input → Split → Map → Shuffle/Sort → Reduce → Output</div>
+  </div>
+
+  <div class="card green">
+    <h3>Word Count Example (Must Know!)</h3>
+    <pre>Input Text:
+"Hello World Hello Hadoop World"
+
+MAP Phase (emit word,1 for each word):
+(Hello,1), (World,1), (Hello,1), (Hadoop,1), (World,1)
+
+SHUFFLE & SORT (group by key):
+Hello  → [1, 1]
+World  → [1, 1]
+Hadoop → [1]
+
+REDUCE Phase (sum the values):
+Hello  → 2
+World  → 2
+Hadoop → 1
+
+Final Output:
+Hello  2
+World  2
+Hadoop 1</pre>
+  </div>
+
+  <div class="card yellow">
+    <h3>MapReduce – More Examples</h3>
+    <h4>Find Maximum Temperature per Year:</h4>
+    <pre>Input: (1950,20), (1950,35), (1951,18), (1951,40)
+
+Map → Key=year, Value=temp:
+(1950,20), (1950,35), (1951,18), (1951,40)
+
+Shuffle: 1950→[20,35], 1951→[18,40]
+
+Reduce (max):
+1950 → 35
+1951 → 40</pre>
+    <h4>Count Students per Department:</h4>
+    <pre>Input: CS-John, CS-Alice, IT-Bob, CS-Eve, IT-Mary
+
+Map: (CS,1),(CS,1),(IT,1),(CS,1),(IT,1)
+Shuffle: CS→[1,1,1], IT→[1,1]
+Reduce: CS→3, IT→2</pre>
+  </div>
+
+  <div class="card highlight">
+    <h3>MapReduce Architecture</h3>
+    <ul>
+      <li><b>JobTracker (Hadoop 1) / ResourceManager (Hadoop 2):</b> Schedules jobs</li>
+      <li><b>TaskTracker / NodeManager:</b> Runs Map/Reduce tasks</li>
+      <li><b>InputFormat:</b> Splits input data (default: TextInputFormat)</li>
+      <li><b>OutputFormat:</b> Writes output (default: TextOutputFormat)</li>
+      <li><b>Combiner:</b> Mini-reducer running on mapper output to reduce data transfer</li>
+      <li><b>Partitioner:</b> Determines which reducer gets which keys</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Apache Hive</h3>
+    <p>Data warehouse built on Hadoop. Allows SQL-like queries (HiveQL) on large datasets.</p>
+    <h4>Key Features:</h4>
+    <ul>
+      <li>Converts HiveQL → MapReduce jobs automatically</li>
+      <li>Supports partitioning, bucketing</li>
+      <li>Schema on read</li>
+    </ul>
+    <h4>Common HiveQL:</h4>
+    <pre>-- Create table
+CREATE TABLE students (id INT, name STRING, dept STRING)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ',';
+
+-- Load data
+LOAD DATA LOCAL INPATH '/path/students.csv' INTO TABLE students;
+
+-- Query
+SELECT dept, COUNT(*) FROM students GROUP BY dept;
+
+-- Partitioning
+CREATE TABLE sales (id INT, amount FLOAT)
+PARTITIONED BY (year INT, month INT);</pre>
+  </div>
+
+  <div class="card">
+    <h3>Hive vs Pig vs HBase</h3>
+    <table>
+      <tr><th>Tool</th><th>Purpose</th><th>Language</th><th>Use Case</th></tr>
+      <tr><td>Hive</td><td>Data warehousing</td><td>HiveQL (SQL-like)</td><td>Ad-hoc queries, ETL</td></tr>
+      <tr><td>Pig</td><td>Data flow</td><td>Pig Latin</td><td>ETL pipelines</td></tr>
+      <tr><td>HBase</td><td>NoSQL DB</td><td>Java API / Shell</td><td>Real-time read/write</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ========== UNIT 6 ========== -->
+<div class="topic" id="unit6">
+  <h2>Unit 6 – NoSQL &amp; Apache Spark</h2>
+
+  <div class="card highlight">
+    <h3>NoSQL Databases</h3>
+    <p>NoSQL = Not Only SQL. Non-relational databases designed for large-scale distributed data.</p>
+    <h4>Types of NoSQL Databases:</h4>
+    <table>
+      <tr><th>Type</th><th>Structure</th><th>Examples</th><th>Use Case</th></tr>
+      <tr><td>Key-Value</td><td>Key→Value pairs</td><td>Redis, DynamoDB</td><td>Caching, Sessions</td></tr>
+      <tr><td>Document</td><td>JSON/BSON documents</td><td>MongoDB, CouchDB</td><td>Content management</td></tr>
+      <tr><td>Column-Family</td><td>Column-oriented</td><td>Cassandra, HBase</td><td>Time-series, IoT</td></tr>
+      <tr><td>Graph</td><td>Nodes + Edges</td><td>Neo4j, ArangoDB</td><td>Social networks</td></tr>
+    </table>
+  </div>
+
+  <div class="card green">
+    <h3>MongoDB (Document Store) – Frequently Asked</h3>
+    <h4>Basic Operations:</h4>
+    <pre>// Insert
+db.students.insertOne({name:"Alice", age:20, dept:"CS"})
+
+// Find
+db.students.find({dept:"CS"})
+db.students.find({age:{$gt:18}})
+
+// Update
+db.students.updateOne({name:"Alice"}, {$set:{age:21}})
+
+// Delete
+db.students.deleteOne({name:"Alice"})
+
+// Aggregation
+db.students.aggregate([
+  {$group: {_id:"$dept", count:{$sum:1}}}
+])
+
+// Create Index
+db.students.createIndex({name:1})</pre>
+    <div class="exam-tip">Know CRUD operations in MongoDB by heart. Also know: $gt, $lt, $eq, $in operators.</div>
+  </div>
+
+  <div class="card yellow">
+    <h3>CAP Theorem (FREQUENTLY ASKED)</h3>
+    <p>A distributed system can guarantee only <b>2 out of 3</b>:</p>
+    <ul>
+      <li><b>C</b>onsistency – All nodes see same data at same time</li>
+      <li><b>A</b>vailability – Every request gets a response</li>
+      <li><b>P</b>artition Tolerance – System works despite network partition</li>
+    </ul>
+    <table>
+      <tr><th>System</th><th>Guarantees</th><th>Examples</th></tr>
+      <tr><td>CP</td><td>Consistency + Partition</td><td>HBase, MongoDB, ZooKeeper</td></tr>
+      <tr><td>AP</td><td>Availability + Partition</td><td>Cassandra, CouchDB, DynamoDB</td></tr>
+      <tr><td>CA</td><td>Consistency + Availability</td><td>Traditional RDBMS (MySQL)</td></tr>
+    </table>
+    <div class="exam-tip">Partition Tolerance is almost always required in distributed systems, so real trade-off is CP vs AP.</div>
+  </div>
+
+  <div class="card highlight">
+    <h3>Apache Spark (VERY IMPORTANT)</h3>
+    <p>Fast, general-purpose cluster computing system. Up to <b>100x faster</b> than Hadoop MapReduce due to <b>in-memory processing</b>.</p>
+    <h4>Spark Components:</h4>
+    <ul>
+      <li><b>Spark Core</b> – Basic functionality, RDD operations</li>
+      <li><b>Spark SQL</b> – Structured data processing with DataFrames</li>
+      <li><b>Spark Streaming</b> – Real-time data processing</li>
+      <li><b>MLlib</b> – Machine learning library</li>
+      <li><b>GraphX</b> – Graph computation</li>
+    </ul>
+  </div>
+
+  <div class="card green">
+    <h3>RDD – Resilient Distributed Dataset</h3>
+    <p>Core abstraction in Spark. Immutable, distributed collection of objects.</p>
+    <h4>RDD Properties:</h4>
+    <ul>
+      <li><b>Resilient:</b> Fault-tolerant using lineage graph</li>
+      <li><b>Distributed:</b> Data across cluster nodes</li>
+      <li><b>Dataset:</b> Collection of partitioned data</li>
+    </ul>
+    <h4>Operations:</h4>
+    <ul>
+      <li><b>Transformations</b> (lazy): map, filter, flatMap, groupByKey, reduceByKey</li>
+      <li><b>Actions</b> (trigger execution): collect, count, first, take, saveAsTextFile</li>
+    </ul>
+    <pre># PySpark RDD Example
+from pyspark import SparkContext
+sc = SparkContext("local","WordCount")
+
+# Create RDD
+rdd = sc.textFile("input.txt")
+
+# Word Count
+counts = rdd.flatMap(lambda line: line.split(" ")) \
+            .map(lambda word: (word, 1)) \
+            .reduceByKey(lambda a,b: a+b)
+
+counts.saveAsTextFile("output")</pre>
+  </div>
+
+  <div class="card">
+    <h3>Spark vs Hadoop MapReduce</h3>
+    <table>
+      <tr><th>Aspect</th><th>Spark</th><th>MapReduce</th></tr>
+      <tr><td>Speed</td><td>100x faster (in-memory)</td><td>Slower (disk I/O)</td></tr>
+      <tr><td>Processing</td><td>Batch + Streaming</td><td>Batch only</td></tr>
+      <tr><td>Ease of Use</td><td>Python, Scala, Java, R</td><td>Java mainly</td></tr>
+      <tr><td>Storage</td><td>RAM (lazy eval)</td><td>HDFS (after each step)</td></tr>
+      <tr><td>Fault Tolerance</td><td>RDD lineage</td><td>Data replication</td></tr>
+      <tr><td>ML Support</td><td>MLlib built-in</td><td>Mahout (separate)</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>HBase</h3>
+    <p>Column-oriented NoSQL database built on HDFS. Modeled after Google Bigtable.</p>
+    <h4>Data Model:</h4>
+    <ul>
+      <li><b>Table</b> → contains rows</li>
+      <li><b>Row Key</b> → unique identifier for each row</li>
+      <li><b>Column Family</b> → group of columns (defined at table creation)</li>
+      <li><b>Column Qualifier</b> → individual column within a family</li>
+      <li><b>Cell</b> → intersection of row + column + timestamp</li>
+    </ul>
+    <pre>HBase Shell Commands:
+create 'students', 'info', 'grades'
+put 'students', 'row1', 'info:name', 'Alice'
+put 'students', 'row1', 'grades:math', '95'
+get 'students', 'row1'
+scan 'students'</pre>
+  </div>
+</div>
+
+<!-- ========== PYQ PATTERNS ========== -->
+<div class="topic" id="pyqs">
+  <h2>🔥 Frequently Asked Question Patterns (PYQ Analysis)</h2>
+
+  <div class="card red">
+    <h3>⭐ Most Frequently Asked Topics (Guaranteed in Exam)</h3>
+    <ul>
+      <li>Word Count using MapReduce (draw + explain)</li>
+      <li>HDFS Architecture with diagram</li>
+      <li>K-Means Clustering with numerical example</li>
+      <li>Binning (Equal-Width, Equal-Frequency) with smoothing</li>
+      <li>Linear Regression with numerical example</li>
+      <li>Naïve Bayes Classifier</li>
+      <li>Data Preprocessing steps</li>
+      <li>Normalization (Min-Max &amp; Z-score)</li>
+      <li>CAP Theorem</li>
+      <li>MongoDB CRUD operations</li>
+    </ul>
+  </div>
+
+  <div class="card yellow">
+    <h3>Short Answer / 2-Mark Questions (Common)</h3>
+    <div class="two-col">
+      <ul>
+        <li>Define: Data Science, Big Data</li>
+        <li>5 V's of Big Data</li>
+        <li>Difference: Supervised vs Unsupervised</li>
+        <li>What is HDFS?</li>
+        <li>What is NameNode / DataNode?</li>
+        <li>Define: Entropy, Information Gain</li>
+        <li>What is RDD?</li>
+      </ul>
+      <ul>
+        <li>What is Hadoop? Components?</li>
+        <li>What is Hive?</li>
+        <li>Support vs Confidence</li>
+        <li>Mean, Median, Mode differences</li>
+        <li>What is overfitting?</li>
+        <li>What is a Combiner in MapReduce?</li>
+        <li>Types of NoSQL databases</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card highlight">
+    <h3>5 V's of Big Data (Must Know!)</h3>
+    <table>
+      <tr><th>V</th><th>Meaning</th><th>Example</th></tr>
+      <tr><td><b>Volume</b></td><td>Size of data</td><td>Terabytes/Petabytes of social media data</td></tr>
+      <tr><td><b>Velocity</b></td><td>Speed of data generation</td><td>Twitter: 500M tweets/day</td></tr>
+      <tr><td><b>Variety</b></td><td>Types of data</td><td>Text, images, video, logs</td></tr>
+      <tr><td><b>Veracity</b></td><td>Trustworthiness/quality</td><td>Noise, inconsistencies</td></tr>
+      <tr><td><b>Value</b></td><td>Business value extracted</td><td>Insights from analysis</td></tr>
+    </table>
+  </div>
+
+  <div class="card green">
+    <h3>🎯 Last Minute Tips</h3>
+    <ul>
+      <li>Always <b>draw diagrams</b> for HDFS, MapReduce flow, K-Means — they earn extra marks</li>
+      <li>For numerical questions, show <b>all steps</b> in a table/formula format</li>
+      <li>Know the <b>default values</b>: HDFS block size = 128MB, Replication = 3, Heartbeat = 3 sec</li>
+      <li><b>Compare/contrast</b> questions: Hadoop vs RDBMS, Spark vs MapReduce, NoSQL vs SQL</li>
+      <li>For algorithms, always state <b>time complexity</b> if possible</li>
+      <li>Apriori: Know how to generate <b>frequent itemsets</b> and calculate support/confidence</li>
+      <li>Decision Tree: Use ID3 — <b>entropy formula</b> is always worth memorizing</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Quick Revision Formulas</h3>
+    <pre>Mean        = Σx / n
+Variance    = Σ(x-mean)² / n
+Std Dev     = √Variance
+Z-score     = (x - μ) / σ
+Min-Max     = (x - min)/(max - min)
+Entropy     = -Σ pᵢ log₂(pᵢ)
+Info Gain   = E(S) - Σ(|Sv|/|S|) × E(Sv)
+Support     = freq(A∪B) / N
+Confidence  = freq(A∪B) / freq(A)
+Correlation = Cov(X,Y) / (σx × σy)
+Regression  b₁ = (nΣxy - ΣxΣy)/(nΣx² - (Σx)²)
+            b₀ = (Σy - b₁Σx)/n</pre>
+  </div>
+</div>
+
+</main>
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.topic').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
